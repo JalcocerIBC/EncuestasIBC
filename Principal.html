@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="JavaScript.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="Estilos.css">
+  
+  <title>Encuesta de Satisfacción</title>
+</head>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <form id="surveyForm" class="p-4">
+        <div class="title-container">
+          <h2>Encuesta de Satisfacción</h2>
+          <label class="form-label highlight-label">¡Tu opinión nos importa mucho en IBC MEXICO!</label>
+        </div>
+
+        <!-- Formulario de Empresa -->
+        <div class="form-group mb-3" id="NomEmp">
+          <label for="companyInput" class="form-label">Empresa</label>
+          <input type="text" id="companyInput" name="Empresa" class="form-control" placeholder="Ingresa el nombre de la empresa">
+        </div>
+        <div class="form-group mb-3">
+          <label for="nameInput" class="form-label">Nombre</label>
+          <input type="text" id="nameInput" name="Nombre" class="form-control" placeholder="Ingresa tu nombre">
+        </div>
+      <!--Imagen de IBC-->
+        <div class="image-container">
+          <img src="IMG/Logo.png" alt="Imagen centrada" class="extra-image">
+        </div>
+        <label id="important-label" class="form-label">¿Cómo calificas nuestro servicio?</label>
+
+        <!--Caritas-->
+        <div class="emoji-options">
+          <label class="emoji-option" data-value="Malo" for="emoji-malo">😡</label>
+          <label class="emoji-option" data-value="Regular" for="emoji-regular">😐</label>
+          <label class="emoji-option" data-value="Bueno" for="emoji-bueno">
+            <img src="IMG/sonrisa.png" alt="Carita verde" style="width: 95px; height: 95px;">
+          </label>
+          <input type="radio" id="emoji-malo" name="satisfaction" value="Malo">
+          <input type="radio" id="emoji-regular" name="satisfaction" value="Regular">
+          <input type="radio" id="emoji-bueno" name="satisfaction" value="Bueno">
+        </div>
+      
+  
+        <!-- Sección de Preguntas para la Carita Mala -->
+        <div id="malo-questions" class="survey-questions" style="display: none;">
+          <label class="form-label">¿Qué fue lo que más te desagradó?</label>
+          <select name="Punto_Negativo" class="form-select">
+            <option value="El Servicio">El servicio</option>
+            <option value="La Atencion">La atención</option>
+            <option value="El Precio">El Precio</option>
+            <option value="Tiempo de Respuesta">Tiempo de respuesta</option>
+          </select>
+
+          <label class="form-label">¿Cómo calificarías el tiempo de respuesta?</label>
+          <select name="Tiempo_de_Respuesta" class="form-select">
+            <option value="Muy Lento">Muy lento</option>
+            <option value="Lento">Lento</option>
+            <option value="Adecuado">Adecuado</option>
+            <option value="Rápido">Rápido</option>
+          </select>
+
+          <label class="form-label">¿Qué podríamos haber hecho para evitar esta situación?</label>
+          <select name="Cambiar" id="solutionEffectiveness" class="form-select">
+            <option value="Claridad de la información">Claridad en la información</option>
+            <option value="Facilidad de contacto">Facilidad de contacto</option>
+            <option value="Mayor flexibilidad">Mayor flexibilidad</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <div id="otherSolutionContainer" style="display: none; margin-top: 10px;">
+            <label for="otherSolution" class="form-label">Por favor, especifique:</label>
+            <textarea id="otherSolution" name="Otra_Solucion" class="form-control" rows="3"></textarea>
+          </div>
+        </div>
+  
+        <!-- Sección de Preguntas para la Carita Regular -->
+        <div id="regular-questions" class="survey-questions" style="display: none;">
+          <label class="form-label">¿Qué podemos mejorar?</label>
+          <select name="Mejorar" class="form-select">
+            <option value="Tiempo de Respuesta">Tiempo de respuesta</option>
+            <option value="Calidad del Servico">Calidad del servicio</option>
+            <option value="Atencion al Cliente">Atención al cliente</option>
+          </select>
+
+          <label class="form-label">¿Te gustaría recibir más información sobre nuestros servicios?</label>
+          <select name="Mas_Informacion" class="form-select">
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+          </select>
+
+          <label class="form-label">¿Recomendarías nuestro servicio?</label>
+          <select name="Recomendarias" class="form-select">
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+  
+        <!-- Sección de Preguntas para la Carita Feliz -->
+        <div id="bueno-questions" class="survey-questions" style="display: none;">
+          <label class="form-label">¿Qué te gustó más?</label>
+          <select name="Punto_Positivo" id="puntoPositivoSelect" class="form-select">
+            <option value="El Servicio">El servicio</option>
+            <option value="La Atencion">La atención</option>
+            <option value="La Rapidez">La rapidez</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <div id="otroPuntoPositivoContainer" style="display: none; margin-top: 10px;">
+            <label for="otroPuntoPositivo" class="form-label">Por favor, especifique:</label>
+            <textarea id="otroPuntoPositivo" name="Otro_Punto_Positivo" class="form-control" rows="3"></textarea>
+          </div>
+          
+
+          <label class="form-label">¿Te gustaría que mantuviéramos nuestra calidad de servicio?</label>
+          <select name="Calidad_de_Servicio" class="form-select">
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+          </select>
+
+          <label class="form-label">¿Volverías a utilizar nuestro servicio?</label>
+          <select name="Volver_a_Usar" class="form-select">
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+  
+        <button type="submit" class="btn btn-primary w-100 mt-3  d-none" id="submitButton">Enviar</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js";
+
+  // Configuración de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyD-CDbcAfySvaOs7roFCNh7NViwvRyxrRY",
+    authDomain: "base-de-datos-encuesta-ea6a2.firebaseapp.com",
+    projectId: "base-de-datos-encuesta-ea6a2",
+    storageBucket: "base-de-datos-encuesta-ea6a2.appspot.com",
+    messagingSenderId: "710799659373",
+    appId: "1:710799659373:web:3f398b739c79a2e6a14a64",
+    measurementId: "G-7QM34H0S2X"
+  };
+
+  // Inicializar Firebase y Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Manejo del formulario
+  document.addEventListener('DOMContentLoaded', () => {
+    const surveyForm = document.getElementById('surveyForm');
+    const submitButton = document.getElementById('submitButton');
+    const companyInput = document.getElementById('companyInput');
+    const nameInput = document.getElementById('nameInput');
+    const otherSolutionContainer = document.getElementById('otherSolutionContainer');
+    const isSubmitted = localStorage.getItem('surveySubmitted');
+    if (isSubmitted) {
+    surveyForm.innerHTML = `
+      <div class="alert alert-success" role="alert">
+        Ya has enviado esta encuesta. Gracias por tu participación.
+      </div>`;
+    return; // Salir para no habilitar el envío del formulario
+  }
+
+    
+    // Mostrar/ocultar campo de texto si se selecciona "Otro"
+    document.getElementById('solutionEffectiveness')?.addEventListener('change', function () {
+      otherSolutionContainer.style.display = this.value === 'Otro' ? 'block' : 'none';
+    });
+
+    // Manejar envío del formulario
+    surveyForm?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+  const data = {};
+
+  // Obtener los datos generales
+  formData.forEach((value, key) => {
+    data[key] = value;
+  });
+
+  // Validar que se haya seleccionado una carita
+  if (!data.satisfaction) {
+    alert('Por favor, selecciona una opción de satisfacción.');
+    return;
+  }
+
+  // Filtrar datos según la carita seleccionada
+  const satisfaction = data.satisfaction; // Malo, Regular, Bueno
+
+  // Limpia los datos para incluir solo los relevantes
+  const filteredData = { satisfaction }; // Solo incluye la carita seleccionada
+  filteredData.Empresa = formData.get('Empresa') || 'Sin especificar';
+  filteredData.Nombre = formData.get('Nombre') || 'Sin especificar';
+
+  filteredData.Punto_Positivo = formData.get('Punto_Positivo');
+if (filteredData.Punto_Positivo === 'Otro') {
+  filteredData.Punto_Positivo = document.getElementById('otroPuntoPositivo').value || 'Sin especificar';
+}
+  if (satisfaction === 'Malo') {
+    filteredData.Punto_Negativo = formData.get('Punto_Negativo');
+    filteredData.Tiempo_de_Respuesta = formData.get('Tiempo_de_Respuesta');
+    filteredData.Cambiar = formData.get('Cambiar');
+    if (filteredData.Cambiar === 'Otro') {
+      filteredData.Cambiar = document.getElementById('otherSolution').value || 'Sin especificar';
+    }
+  } else if (satisfaction === 'Regular') {
+    filteredData.Mejorar = formData.get('Mejorar');
+    filteredData.Mas_Informacion = formData.get('Mas_Informacion');
+    filteredData.Recomendarias= formData.get('Recomendarias');
+
+  } else if (satisfaction === 'Bueno') {
+    filteredData.Punto_Positivo = formData.get('Punto_Positivo');
+    if (filteredData.Punto_Positivo === 'Otro') {
+    filteredData.Punto_Positivo = document.getElementById('otroPuntoPositivo').value || 'Sin especificar';
+  }
+  filteredData.Calidad_de_Servicio = formData.get('Calidad_de_Servicio');
+  filteredData.Volver_a_Usar = formData.get('Volver_a_Usar');
+  }
+
+  try {
+    // Guardar en Firestore solo los datos filtrados
+    await addDoc(collection(db, "encuestas"), filteredData);
+    const modal = document.getElementById('Gracias');
+    modal.classList.add('active');
+    setTimeout(() => {
+    modal.classList.remove('active');
+    surveyForm.reset();
+  }, 3000);
+    
+      // Marcar como enviado
+      localStorage.setItem('surveySubmitted', 'true');
+
+      // Mostrar mensaje de agradecimiento y bloquear formulario
+      surveyForm.innerHTML = `
+        <div class="alert alert-success" role="alert">
+          Gracias por responder la encuesta. Ya no puedes responderla nuevamente.
+        </div>`;
+    } catch (error) {
+      console.error('Error al guardar la encuesta:', error);
+      alert('Ocurrió un error al guardar la encuesta. Por favor, inténtalo nuevamente.');
+    }
+  });
+});
+</script>
+
+<div id="Gracias" class="modal-container">
+  <div class="modal-content">
+    <img src="IMG/si.png" alt="Palomita" class="check-icon">
+    <h2>¡Gracias por responder la encuesta!</h2>
+    <p>Tu opinión es muy importante para nosotros.</p>
+  </div>
+</div>
+</body>
+</html>
